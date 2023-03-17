@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MemberRegisterForm</title>
+</head>
+<th:block>
+  <script th:inline="javascript">
+    $(document).ready(function(){
+      var errorMessage = [[${errorMessage}]];
+      if(errorMessage != null){
+        alert(errorMessage);
+      }
+    });
+  </script>
+</th:block>
+<body>
+  <div>
+    <form action="/member/new" role="form" method="post" th:object="${memberDto}">
+      <div>
+        <label th:for="email">Email</label>
+        <input type="email" th:field="*{email}" placeholder="Email">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect Data</p>
+      </div>
+      <div>
+        <label th:for="password">Password</label>
+        <input type="password" th:field="*{password}" placeholder="Password">
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect Data</p>
+      </div>
+      <div>
+        <label th:for="name">Name</label>
+        <input type="text" th:field="*{name}" placeholder="Name">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect Data</p>
+      </div>
+      <div>
+        <label th:for="mbti">Mbti</label>
+        <select th:field="*{mbti}">
+          <option th:each="mbtiValue : ${T(ToyProject.MBTIBoard.constant.Mbti).values()}" th:value="${mbtiValue.name()}" th:text="${mbtiValue.name()}">
+            val
+          </option>
+        </select>
+        <p th:if="${#fields.hasErrors('mbti')}" th:errors="*{mbti}">Incorrect Data</p>
+      </div>
+      <div>
+        <button type="submit">
+          SUBMIT
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

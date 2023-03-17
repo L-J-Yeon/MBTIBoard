@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardList</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>TITLE</th>
+                <th>WRITER</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.id}"></td>
+                <td>
+                    <a th:href="@{'/board/detail/'+${board.id}}" th:text="${board.title}"></a>
+                </td>
+                <td th:text="${board.writer}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

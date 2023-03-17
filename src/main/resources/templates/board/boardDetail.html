@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardDetail</title>
+</head>
+<body>
+    <div>
+        <h1>BoardDetail</h1>
+        <div>
+            <label th:for="title">TITLE</label>
+            <p th:text="${board.title}"></p>
+        </div>
+        <div>
+            <label th:for="writer">WRITER</label>
+            <p th:text="${board.writer}"></p>
+        </div>
+        <div>
+            <label th:for="content">CONTENT</label>
+            <p th:text="${board.content}"></p>
+        </div>
+        <a th:href="@{/board/delete(id=${board.id})}">
+            DELETE
+        </a>
+        <a th:href="@{/board/modify/{id}(id=${board.id})}">
+            MODIFY
+        </a>
+    </div>
+</body>
+</html>

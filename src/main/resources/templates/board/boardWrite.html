@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardWrite</title>
+</head>
+<th:block>
+  <script th:inline="javascript">
+    $(document).ready(function(){
+      var errorMessage = [[${errorMessage}]];
+      if(errorMessage != null){
+        alert(errorMessage);
+      }
+    });
+  </script>
+</th:block>
+<body>
+  <div>
+    <form action="/board/write" role="form" method="post" th:object="${boardDto}">
+      <div>
+        <label th:for="title">TITLE</label>
+        <input type="text" th:field="*{title}" placeholder="TITLE">
+        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect Data</p>
+      </div>
+      <div>
+        <label th:for="writer">WRITER</label>
+        <input type="text" th:field="*{writer}" placeholder="WRITER">
+        <p th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}">Incorrect Data</p>
+      </div>
+      <div>
+        <label th:for="content">CONTENT</label>
+        <textarea rows="5" th:field="*{content}"></textarea>
+        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Incorrect Data</p>
+      </div>
+      <div>
+        <button type="submit">
+          WRITE
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
